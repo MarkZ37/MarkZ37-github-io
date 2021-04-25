@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2021/04/25/Vue-SpringBoot%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/</loc>
+    
+    <lastmod>2021-04-25</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2021/04/25/Mybatis%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B2-%E4%BD%BF%E7%94%A8Maven%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0/</loc>
     
     <lastmod>2021-04-25</lastmod>
@@ -166,6 +173,13 @@
   
   <url>
     <loc>http://yoursite.com/tags/MySql/</loc>
+    <lastmod>2021-04-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/axios/</loc>
     <lastmod>2021-04-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

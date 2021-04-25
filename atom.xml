@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-04-25T11:26:48.412Z</updated>
+  <updated>2021-04-25T12:52:32.606Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue+SpringBoot实现跨域请求</title>
+    <link href="http://yoursite.com/2021/04/25/Vue-SpringBoot%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/"/>
+    <id>http://yoursite.com/2021/04/25/Vue-SpringBoot%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/</id>
+    <published>2021-04-25T12:28:03.000Z</published>
+    <updated>2021-04-25T12:52:32.606Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h1><p>最近在做毕业设计，当遇上本地接口调试时，遇上了跨域请求的问题。</p><h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>前端启动在localhost:8081，后端启动在localhost:8080，当初做微信小程序，前端并没有像Vue这样单独启动一个端口作为服务，所以在请求同一协议同在一台服务器下不同端口的时候便有了跨域访问的问题。</p><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h2 id="SpringBoot添加CorsFilter"><a href="#SpringBoot添加CorsFilter" class="headerlink" title="SpringBoot添加CorsFilter"></a>SpringBoot添加CorsFilter</h2><p>CorsFilter是解决跨域问题的一个过滤器工具，在SpringBoot项目中可以加以配置，我自己是建立一个WebMvcConfig.java</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.markz.horizon.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.CorsRegistry;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebMvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCorsMappings</span><span class="params">(CorsRegistry corsRegistry)</span></span>&#123;</span><br><span class="line">        corsRegistry.addMapping(<span class="string">&quot;/**&quot;</span>).allowedOrigins(<span class="string">&quot;http://localhost:8081&quot;</span>)</span><br><span class="line">                .allowedHeaders(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                .allowedMethods(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                .maxAge(<span class="number">30</span>*<span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>大概意思为允许所有接口对localhost:8081下的任意请求头任意方法进行跨域请求，最大有效时长为30s。如上配置完，加上@Configuration注解即可。</p><h2 id="Vue端axios"><a href="#Vue端axios" class="headerlink" title="Vue端axios"></a>Vue端axios</h2><p>在项目main.js配置如下</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line">axios.defaults.baseURL=<span class="string">&#x27;http://localhost:8080&#x27;</span></span><br></pre></td></tr></table></figure><p>大功告成。</p><p>ok，以上文章为本人经验得出，若有不足，请多指出，虚心接受~</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;前情提要&quot;&gt;&lt;a href=&quot;#前情提要&quot; class=&quot;headerlink&quot; title=&quot;前情提要&quot;&gt;&lt;/a&gt;前情提要&lt;/h1&gt;&lt;p&gt;最近在做毕业设计，当遇上本地接口调试时，遇上了跨域请求的问题。&lt;/p&gt;
+&lt;h1 id=&quot;问题复现&quot;&gt;&lt;a href=&quot;#问题</summary>
+      
+    
+    
+    
+    
+    <category term="SpringBoot" scheme="http://yoursite.com/tags/SpringBoot/"/>
+    
+    <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
+    
+    <category term="axios" scheme="http://yoursite.com/tags/axios/"/>
+    
+  </entry>
   
   <entry>
     <title>Mybatis逆向工程2-使用Maven插件实现</title>
