@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-08-27T08:37:48.128Z</updated>
+  <updated>2021-09-02T02:36:02.484Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Django下取出Delete请求中的参数（避坑向）</title>
+    <link href="http://yoursite.com/2021/09/02/Django%E4%B8%8B%E5%8F%96%E5%87%BADelete%E8%AF%B7%E6%B1%82%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0/"/>
+    <id>http://yoursite.com/2021/09/02/Django%E4%B8%8B%E5%8F%96%E5%87%BADelete%E8%AF%B7%E6%B1%82%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0/</id>
+    <published>2021-09-02T01:08:25.000Z</published>
+    <updated>2021-09-02T02:36:02.484Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h1><p>在刚刚进入公司的时候，在练手项目中首次接触到了发送delete请求的情况，之前一直在使用的是post和get请求。在我使用的一种Axios设置参数的方法中，在Django后端获取数据时，post，get，put请求都可以直接通过request.getbody获取到数据，但是delete方法却不行，究其原因，是delete请求需要前端单独设置传参方式才可以达到目的。</p><h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><h2 id="1、前端常规请求方式"><a href="#1、前端常规请求方式" class="headerlink" title="1、前端常规请求方式"></a>1、前端常规请求方式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">post</span>(<span class="params">url, params</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//url是接口url，params是数据，在前端可以直接传键值对数组</span></span><br><span class="line">  <span class="keyword">return</span> axios.post(url, params); <span class="comment">//如果不需要转json的话，那么第二个参数就是params</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="2、Delete请求方式"><a href="#2、Delete请求方式" class="headerlink" title="2、Delete请求方式"></a>2、Delete请求方式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Delete方法的方法名最好别用delete，delete是js中的关键字</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">axiosDelete</span>(<span class="params">url, params</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//与上述不同，params需要改为&#123;data: params&#125;</span></span><br><span class="line">  <span class="keyword">return</span> axios.delete(url, &#123;<span class="attr">data</span>: params&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="3、后端解析"><a href="#3、后端解析" class="headerlink" title="3、后端解析"></a>3、后端解析</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//若没有上述改进，request.body获取不到数据</span><br><span class="line">json.loads(request.body.decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br></pre></td></tr></table></figure><p>OK，上述内容为个人经验得出，若有不对，多多指出，虚心接受~</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;前情提要&quot;&gt;&lt;a href=&quot;#前情提要&quot; class=&quot;headerlink&quot; title=&quot;前情提要&quot;&gt;&lt;/a&gt;前情提要&lt;/h1&gt;&lt;p&gt;在刚刚进入公司的时候，在练手项目中首次接触到了发送delete请求的情况，之前一直在使用的是post和get请求。在我使用的</summary>
+      
+    
+    
+    
+    
+    <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+    <category term="Django" scheme="http://yoursite.com/tags/Django/"/>
+    
+    <category term="Http" scheme="http://yoursite.com/tags/Http/"/>
+    
+  </entry>
   
   <entry>
     <title>Django+Ajax中CSRF中间件造成请求403错误的种种</title>
